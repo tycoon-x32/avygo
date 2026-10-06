@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Insurance</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html" class="active">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Insurance</div>
+          <h1>Protect every part of the journey.</h1>
+          <p class="lead">Offer travel protection during checkout with medical cover, baggage protection, trip cancellation, and emergency support from licensed partners.</p>
+          <ul class="meta-list">
+            <li><span>🩺</span> <div><b>Medical cover</b> for international travelers and business teams</div></li>
+            <li><span>🧳</span> <div><b>Baggage protection</b> and delayed flight coverage</div></li>
+            <li><span>📞</span> <div><b>Emergency help</b> available wherever the journey goes</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Insurance plan">
+            <div class="field-grid">
+              <label>Destination<input name="destination" type="text" value="London" /></label>
+              <label>Trip length<select name="duration"><option>5 days</option><option>7 days</option><option>14 days</option></select></label>
+              <label>Coverage<select name="coverage"><option>Essential</option><option>Premium</option><option>Executive</option></select></label>
+              <label>Travelers<select name="travelers"><option>2 adults</option><option>1 adult</option><option>Family</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Get coverage</button>
+            <a class="btn btn-secondary" href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener noreferrer">Reserve protection</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Coverage options</h3>
+            <p>Essential plan • $78</p>
+            <p>Premium plan • $142</p>
+            <p><a href="https://www.allianztravelinsurance.com" target="_blank" rel="noreferrer">View insurance partners</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Travel protection marketplace</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

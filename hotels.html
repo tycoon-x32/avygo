@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Hotels</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html" class="active">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Hotels</div>
+          <h1>Bundle stays into every trip.</h1>
+          <p class="lead">Create a complete travel itinerary with nearby hotels, airport proximity, business-friendly amenities, loyalty perks, and luxury options.</p>
+          <ul class="meta-list">
+            <li><span>🏙</span> <div><b>Location match</b> by airport, city center, or business district</div></li>
+            <li><span>⭐</span> <div><b>Smart filtering</b> by budget, family fit, and long-stay value</div></li>
+            <li><span>💳</span> <div><b>Bundle pricing</b> with flights and transfers</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Hotel booking">
+            <div class="field-grid">
+              <label>City<input name="city" type="text" value="Dubai" /></label>
+              <label>Stay<select name="stay"><option>3 nights</option><option>5 nights</option><option>7 nights</option></select></label>
+              <label>Travel style<select name="style"><option>Business</option><option>Luxury</option><option>Family</option></select></label>
+              <label>Budget<select name="budget"><option>$200 - $400</option><option>$400 - $800</option><option>$800+</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Book hotel</button>
+            <a class="btn btn-secondary" href="https://www.airbnb.com/" target="_blank" rel="noopener noreferrer">Reserve accommodation</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Recommended stay</h3>
+            <p>Downtown Business Suites</p>
+            <p>4.8 rating • 1.5 km from airport transfer pick-up</p>
+            <p><a href="https://www.airbnb.com" target="_blank" rel="noreferrer">Explore accommodation on Airbnb</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Hotel ecosystem</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

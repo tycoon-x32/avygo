@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Cargo</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html" class="active">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Cargo</div>
+          <h1>Move urgent freight across borders.</h1>
+          <p class="lead">Support air freight bookings for pharmaceuticals, perishables, industrial items, and time-sensitive business shipments with customs and tracking workflows.</p>
+          <ul class="meta-list">
+            <li><span>📦</span> <div><b>Quote management</b> for weight, dimensions, and urgency</div></li>
+            <li><span>📍</span> <div><b>Tracking & docs</b> for customs and destination delivery</div></li>
+            <li><span>🔐</span> <div><b>Insurance support</b> for valuable cargo</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Cargo booking">
+            <div class="field-grid">
+              <label>From<input name="from" type="text" value="Nairobi" /></label>
+              <label>To<input name="to" type="text" value="Amsterdam" /></label>
+              <label>Weight<input name="weight" type="text" value="2 tonnes" /></label>
+              <label>Shipment<select name="shipment"><option>Pharmaceuticals</option><option>Flowers</option><option>Electronics</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Request quote</button>
+            <a class="btn btn-secondary" href="https://www.dhl.com" target="_blank" rel="noopener noreferrer">Reserve cargo service</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Estimated quote</h3>
+            <p>Air freight • 48-hour delivery • 2 tonnes</p>
+            <p>From $3,800</p>
+            <p><a href="https://www.dhl.com" target="_blank" rel="noreferrer">See logistics platform</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Cargo ecosystem</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

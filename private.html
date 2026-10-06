@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Private</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html" class="active">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Private aviation</div>
+          <h1>Instant access to charter operators.</h1>
+          <p class="lead">Book private aircraft for executive movement, group travel, urgent business trips, and high-value leisure itineraries with transparent operator data.</p>
+          <p class="lead" style="margin-top: 12px; color: var(--accent);">A smarter, cheaper option for shared routes, business teams, and time-sensitive travelers that need flexibility without full aircraft ownership.</p>
+          <ul class="meta-list">
+            <li><span>🛩</span> <div><b>Aircraft options</b> by seats, luggage, crew, and range</div></li>
+            <li><span>⏱</span> <div><b>Fast booking</b> for same-day or next-day movement</div></li>
+            <li><span>📘</span> <div><b>Operator vetting</b> and compliance details</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Private charter booking">
+            <div class="field-grid">
+              <label>From<input name="from" type="text" value="Nairobi" /></label>
+              <label>To<input name="to" type="text" value="Dubai" /></label>
+              <label>Date<input name="date" type="date" /></label>
+              <label>Passengers<select name="passengers"><option>8 passengers</option><option>4 passengers</option><option>12 passengers</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Request charter</button>
+            <a class="btn btn-secondary" href="https://www.jetex.com" target="_blank" rel="noopener noreferrer">Flying private</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Available aircraft</h3>
+            <p>Light jet • 6 seats • 2 bags</p>
+            <p>Estimated from $16,500</p>
+            <p><a href="https://www.jetex.com" target="_blank" rel="noreferrer">See private aviation marketplace</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Private travel marketplace</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Transfers</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html" class="active">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Transfers</div>
+          <h1>Connect your trip from landing to stay.</h1>
+          <p class="lead">Automatically schedule airport pickup, executive vehicles, family transport, and chauffeur services using live flight data.</p>
+          <ul class="meta-list">
+            <li><span>🚗</span> <div><b>Airport pickup</b> mapped to arrival time and airline</div></li>
+            <li><span>📡</span> <div><b>Live delay sync</b> with flight information</div></li>
+            <li><span>🧭</span> <div><b>Destination routing</b> to hotel, office, or private terminal</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Transfer booking">
+            <div class="field-grid">
+              <label>Airport<input name="airport" type="text" value="DXB" /></label>
+              <label>Hotel<input name="hotel" type="text" value="Downtown Dubai" /></label>
+              <label>Arrival<input name="time" type="time" value="18:40" /></label>
+              <label>Vehicle<select name="vehicle"><option>Luxury chauffeur</option><option>Executive SUV</option><option>Family van</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Book transfer</button>
+            <a class="btn btn-secondary" href="https://www.uber.com" target="_blank" rel="noopener noreferrer">Reserve transfer</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Pickup ready</h3>
+            <p>Driver assigned • Executive SUV • 20 min estimated</p>
+            <p>From $120</p>
+            <p><a href="https://www.uber.com" target="_blank" rel="noreferrer">See ground transport options</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Seamless airport transfers</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

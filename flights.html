@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Flights</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html" class="active">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Flights</div>
+          <h1>Search flights across the world.</h1>
+          <p class="lead">Compare fares, airline services, baggage, and connection options in one booking experience built for travelers and businesses.</p>
+          <ul class="meta-list">
+            <li><span>✈</span> <div><b>Route search</b> from Nairobi, London, Dubai, Lagos and more</div></li>
+            <li><span>🧳</span> <div><b>Baggage & meals</b> selected during booking</div></li>
+            <li><span>🔄</span> <div><b>Multi-city and multi-airline</b> itinerary support</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Flight booking">
+            <div class="field-grid">
+              <label>From<input name="from" type="text" value="Nairobi" /></label>
+              <label>To<input name="to" type="text" value="Dubai" /></label>
+              <label>Departure<input name="date" type="date" /></label>
+              <label>Passengers<select name="passengers"><option>2 Adults</option><option>1 Adult</option><option>Family</option></select></label>
+              <label>Cabin<select name="cabin"><option>Economy</option><option>Business</option><option>First</option></select></label>
+              <label>Trip type<select name="tripType"><option>Round trip</option><option>One way</option><option>Multi-city</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Search & reserve</button>
+            <a class="btn btn-secondary" href="https://www.skyscanner.com" target="_blank" rel="noopener noreferrer">Reserve now</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Recommended route</h3>
+            <p>Emirates • Economy • 4h 35m</p>
+            <p>From $620 per traveler</p>
+            <p><a href="https://www.skyscanner.com" target="_blank" rel="noreferrer">View live fare on Skyscanner</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Flights foundation</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

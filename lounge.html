@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo Lounge</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html" class="active">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero">
+      <section class="page-shell">
+        <div class="detail-card">
+          <div class="kicker">Lounge</div>
+          <h1>Upgrade the airport experience.</h1>
+          <p class="lead">Turn airport waiting time into a premium experience with lounge access, memberships, and corporate benefits built into the trip.</p>
+          <ul class="meta-list">
+            <li><span>🪑</span> <div><b>Premium access</b> across key international airports</div></li>
+            <li><span>💼</span> <div><b>Business subscriptions</b> for teams and corporate travelers</div></li>
+            <li><span>🎟</span> <div><b>Pay-per-visit</b> or membership-based products</div></li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <form data-booking-form data-service="Lounge access">
+            <div class="field-grid">
+              <label>Airport<input name="airport" type="text" value="Jomo Kenyatta" /></label>
+              <label>Access<select name="access"><option>Premium pass</option><option>Business lounge</option><option>Family lounge</option></select></label>
+              <label>Travelers<select name="travelers"><option>2 adults</option><option>1 traveler</option><option>Family of 4</option></select></label>
+              <label>Plan<select name="plan"><option>Pay per visit</option><option>Monthly</option><option>Annual</option></select></label>
+            </div>
+            <button class="btn btn-primary" type="submit">Reserve lounge</button>
+            <a class="btn btn-secondary" href="https://www.prioritypass.com" target="_blank" rel="noopener noreferrer">Reserve lounge</a>
+          </form>
+          <div class="booking-result result-box">
+            <h3>Available access</h3>
+            <p>Sky Lounge • 6:00 AM to 11:00 PM</p>
+            <p>From $59 per visit</p>
+            <p><a href="https://www.prioritypass.com" target="_blank" rel="noreferrer">Explore lounge passes</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>Lounge access and memberships</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

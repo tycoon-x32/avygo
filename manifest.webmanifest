@@ -1,0 +1,19 @@
+{
+  "name": "AvyGo Aviation Ecosystem",
+  "short_name": "AvyGo",
+  "description": "One app for flights, hotels, private jet travel, cargo, transfers, lounges, insurance, and AI-powered trip planning.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071a2b",
+  "theme_color": "#0d223b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./avygo%20logo1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

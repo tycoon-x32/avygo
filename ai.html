@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d223b" />
+    <title>AvyGo AI Planner</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./flights.html">Flights</a>
+          <a href="./hotels.html">Hotels</a>
+          <a href="./private.html">Private</a>
+          <a href="./cargo.html">Cargo</a>
+          <a href="./transfers.html">Transfers</a>
+          <a href="./lounge.html">Lounge</a>
+          <a href="./insurance.html">Insurance</a>
+          <a href="./ai.html" class="active">AI</a>
+        </nav>
+        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+      </div>
+    </header>
+
+    <main class="container page-hero ai-page-shell">
+      <section class="page-shell ai-page-shell-inner">
+        <div class="detail-card ai-hero-panel">
+          <div class="kicker">AI planner</div>
+          <h1>Plan your ideal journey with one prompt.</h1>
+          <p class="lead">Describe the trip you want, and AvyGo AI will assemble a smart itinerary combining flights, hotel, transfer, lounge, and insurance.</p>
+          <div class="check-list">
+            <div><span class="check">✓</span> Multi-service trip design</div>
+            <div><span class="check">✓</span> Budget-aware recommendations</div>
+            <div><span class="check">✓</span> One-click booking flow</div>
+          </div>
+        </div>
+
+        <div class="form-card ai-chat-card">
+          <div class="ai-chat-header">
+            <div class="ai-badge">AI</div>
+            <span>AvyGo Copilot</span>
+          </div>
+
+          <div id="chat-messages" class="chat-messages" aria-live="polite">
+            <div class="message bot">
+              <div class="avatar">A</div>
+              <div class="bubble">Hi! I can help you plan a trip, compare routes, and build a complete travel itinerary across flights, hotels, transfers, lounges, and insurance.</div>
+            </div>
+          </div>
+
+          <form id="ai-form" class="chat-form">
+            <textarea name="message" placeholder="Ask AvyGo AI to plan a trip..." required></textarea>
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>AI-backed trip planning</div></div></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>
