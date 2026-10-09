@@ -1,71 +1,483 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0d223b" />
-    <title>AvyGo AI Planner</title>
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg" />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container nav">
-        <a class="brand" href="./index.html"><img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo" /><span>AvyGo</span></a>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="./index.html">Home</a>
-          <a href="./flights.html">Flights</a>
-          <a href="./hotels.html">Hotels</a>
-          <a href="./private.html">Private</a>
-          <a href="./cargo.html">Cargo</a>
-          <a href="./transfers.html">Transfers</a>
-          <a href="./lounge.html">Lounge</a>
-          <a href="./insurance.html">Insurance</a>
-          <a href="./ai.html" class="active">AI</a>
-        </nav>
-        <a class="nav-cta" href="./ai.html">Build My Trip</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d223b">
+  <title>AvyGo AI Planner</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./avygo%20logo1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="./styles.css">
+
+  <style>
+    .chat-messages {
+      min-height: 250px;
+      max-height: 430px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .message {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0;
+      align-items: flex-start;
+    }
+
+    .message.user { flex-direction: row-reverse; }
+
+    .message .avatar {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #0d223b;
+      color: white;
+      font-weight: bold;
+    }
+
+    .message.user .avatar {
+      background: #d6b36a;
+      color: #101010;
+    }
+
+    .message .bubble {
+      max-width: 85%;
+      padding: 12px 15px;
+      border-radius: 13px;
+      background: #f1f3f5;
+      color: #17202a;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .message.user .bubble {
+      background: #0d223b;
+      color: white;
+    }
+
+    .message .bubble a {
+      color: #1765a5;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .question-groups {
+      display: grid;
+      gap: 18px;
+      margin: 20px 0;
+    }
+
+    .question-group h3 {
+      font-size: 15px;
+      margin: 0 0 10px;
+    }
+
+    .question-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .question-buttons button {
+      padding: 10px 13px;
+      border: 1px solid #cbd1d8;
+      border-radius: 20px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      text-align: left;
+      transition: background .2s, color .2s, transform .2s;
+    }
+
+    .question-buttons button:hover,
+    .question-buttons button:focus-visible {
+      background: #0d223b;
+      color: white;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .question-buttons button:disabled {
+      opacity: .5;
+      cursor: wait;
+    }
+
+    .chat-status {
+      font-size: 12px;
+      opacity: .75;
+      margin-top: 12px;
+    }
+
+    .chat-reset {
+      margin-top: 14px;
+      padding: 8px 12px;
+      border: 1px solid #cbd1d8;
+      border-radius: 8px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .chat-reset:hover {
+      background: #e9edf2;
+      color: #0d223b;
+    }
+  </style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="./index.html">
+      <img class="brand-logo" src="./avygo%20logo1.jpg" alt="AvyGo logo">
+      <span>AvyGo</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="./index.html">Home</a>
+      <a href="./flights.html">Flights</a>
+      <a href="./hotels.html">Hotels</a>
+      <a href="./private.html">Private</a>
+      <a href="./cargo.html">Cargo</a>
+      <a href="./transfers.html">Transfers</a>
+      <a href="./lounge.html">Lounge</a>
+      <a href="./insurance.html">Insurance</a>
+      <a href="./ai.html" class="active">AI</a>
+    </nav>
+
+    <a class="nav-cta" href="./ai.html">Build My Trip</a>
+  </div>
+</header>
+
+<main class="container page-hero ai-page-shell">
+  <section class="page-shell ai-page-shell-inner">
+
+    <div class="detail-card ai-hero-panel">
+      <div class="kicker">Travel assistant</div>
+      <h1>Plan your ideal journey with one click.</h1>
+      <p class="lead">
+        Select a question below to explore international flight budgets,
+        accommodation, airport transfers, and other AvyGo services.
+      </p>
+
+      <div class="check-list">
+        <div><span class="check">✓</span> Instant built-in answers</div>
+        <div><span class="check">✓</span> Indicative flight-price estimates</div>
+        <div><span class="check">✓</span> Direct links to travel services</div>
       </div>
-    </header>
+    </div>
 
-    <main class="container page-hero ai-page-shell">
-      <section class="page-shell ai-page-shell-inner">
-        <div class="detail-card ai-hero-panel">
-          <div class="kicker">AI planner</div>
-          <h1>Plan your ideal journey with one prompt.</h1>
-          <p class="lead">Describe the trip you want, and AvyGo AI will assemble a smart itinerary combining flights, hotel, transfer, lounge, and insurance.</p>
-          <div class="check-list">
-            <div><span class="check">✓</span> Multi-service trip design</div>
-            <div><span class="check">✓</span> Budget-aware recommendations</div>
-            <div><span class="check">✓</span> One-click booking flow</div>
+    <div class="form-card ai-chat-card">
+      <div class="ai-chat-header">
+        <div class="ai-badge">AI</div>
+        <span>AvyGo Copilot</span>
+      </div>
+
+      <div id="chat-messages" class="chat-messages" aria-live="polite">
+        <div class="message bot">
+          <div class="avatar">A</div>
+          <div class="bubble">Welcome to AvyGo Copilot! 👋
+
+Choose one of the questions below. I'll respond immediately using AvyGo's built-in travel guide.
+
+No typing is needed.</div>
+        </div>
+      </div>
+
+      <div class="question-groups">
+
+        <div class="question-group">
+          <h3>👋 General questions</h3>
+          <div class="question-buttons">
+            <button data-question="hello">Hello, AvyGo!</button>
+            <button data-question="how">How are you?</button>
+            <button data-question="about">What is AvyGo?</button>
+            <button data-question="help">What can you help me with?</button>
           </div>
         </div>
 
-        <div class="form-card ai-chat-card">
-          <div class="ai-chat-header">
-            <div class="ai-badge">AI</div>
-            <span>AvyGo Copilot</span>
+        <div class="question-group">
+          <h3>✈️ International flight prices</h3>
+          <div class="question-buttons">
+            <button data-question="flight-general">How much are international flights?</button>
+            <button data-question="flight-london">Nairobi to London</button>
+            <button data-question="flight-dubai">Nairobi to Dubai</button>
+            <button data-question="flight-usa">Nairobi to the USA</button>
+            <button data-question="flight-india">Nairobi to India</button>
+            <button data-question="flight-africa">Flights within Africa</button>
+            <button data-question="flight-australia">Flights to Australia</button>
           </div>
-
-          <div id="chat-messages" class="chat-messages" aria-live="polite">
-            <div class="message bot">
-              <div class="avatar">A</div>
-              <div class="bubble">Hi! I can help you plan a trip, compare routes, and build a complete travel itinerary across flights, hotels, transfers, lounges, and insurance.</div>
-            </div>
-          </div>
-
-          <form id="ai-form" class="chat-form">
-            <textarea name="message" placeholder="Ask AvyGo AI to plan a trip..." required></textarea>
-            <button class="btn btn-primary" type="submit">Send</button>
-          </form>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer"><div class="container footer-inner"><div>© <span data-year></span> AvyGo</div><div>AI-backed trip planning</div></div></footer>
-    <script src="./app.js"></script>
-  </body>
+        <div class="question-group">
+          <h3>🏨 Hotels and accommodation</h3>
+          <div class="question-buttons">
+            <button data-question="hotels">Find hotels</button>
+            <button data-question="hotel-prices">Where can I check hotel prices?</button>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <h3>🚘 Airport transfers</h3>
+          <div class="question-buttons">
+            <button data-question="transfers">I need an airport transfer</button>
+            <button data-question="transfer-prices">Where can I check transfer options?</button>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <h3>🛩️ Other AvyGo services</h3>
+          <div class="question-buttons">
+            <button data-question="private">Private flights and charter</button>
+            <button data-question="cargo">Cargo services</button>
+            <button data-question="lounge">Airport lounges</button>
+            <button data-question="insurance">Travel insurance</button>
+            <button data-question="trip">Help me plan a trip</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="chat-status" class="chat-status" role="status">
+        Select a question to begin.
+      </div>
+
+      <button type="button" id="reset-chat" class="chat-reset">
+        Reset conversation
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>© <span data-year></span> AvyGo</div>
+    <div>Smart travel planning</div>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+
+<script>
+(() => {
+  "use strict";
+
+  const messages = document.getElementById("chat-messages");
+  const status = document.getElementById("chat-status");
+  const resetButton = document.getElementById("reset-chat");
+  const questionButtons = document.querySelectorAll("[data-question]");
+
+  const welcomeMessage =
+    "Welcome to AvyGo Copilot! 👋\n\nChoose one of the questions below. I'll respond immediately using AvyGo's built-in travel guide.\n\nNo typing is needed.";
+
+  // All answers are handled locally. This file makes NO AI API requests.
+  const answers = {
+    hello: {
+      question: "Hello, AvyGo!",
+      answer: "Hello! 👋 Welcome to AvyGo. Choose a topic below to explore our travel services and international flight budget estimates."
+    },
+
+    how: {
+      question: "How are you?",
+      answer: "I'm ready to help you explore your travel options! ✈️ Choose a category below to get started."
+    },
+
+    about: {
+      question: "What is AvyGo?",
+      answer: "AvyGo is a travel-planning platform covering flight planning, hotels, private aviation, cargo, transfers, airport lounges, travel insurance, and trip-planning assistance. Select any service below to explore it."
+    },
+
+    help: {
+      question: "What can you help me with?",
+      answer: "I can provide general international flight budget estimates and guide you to AvyGo's service pages.\n\n✈️ Flight estimates\n🏨 Hotels: hotels.html\n🚘 Transfers: transfers.html\n🛩️ Private aviation: private.html\n📦 Cargo: cargo.html\n🛋️ Airport lounges: lounge.html\n🧳 Insurance: insurance.html"
+    },
+
+    "flight-general": {
+      question: "How much are international flights?",
+      answer: "✈️ INDICATIVE INTERNATIONAL FLIGHT BUDGETS\n\nThese are broad example budgets for economy-class return tickets from Nairobi, in USD:\n\n• Selected African routes: $250–$800\n• Middle East: $350–$900\n• India and parts of Asia: $350–$1,100\n• Europe: $500–$1,200\n• North America: $700–$1,500\n• Australia and Oceania: $900–$1,800\n\nThese are planning estimates, not live fares or guaranteed offers. Prices depend on travel dates, airline, route, baggage, and availability.\n\nChoose a destination below for an illustrative route estimate."
+    },
+
+    "flight-london": {
+      question: "Nairobi to London",
+      answer: "✈️ NAIROBI ↔ LONDON\n\nIllustrative economy return-trip budget: USD $500–$1,200 per person.\n\nThis is a broad planning estimate, not a live ticket quote. Season, airline, baggage, stopovers, and booking date affect the price.\n\nFor an actual fare, check an airline or flight-booking provider before making plans."
+    },
+
+    "flight-dubai": {
+      question: "Nairobi to Dubai",
+      answer: "✈️ NAIROBI ↔ DUBAI\n\nIllustrative economy return-trip budget: USD $350–$850 per person.\n\nThis is a planning estimate only. Actual prices depend on dates, airline, baggage, and availability."
+    },
+
+    "flight-usa": {
+      question: "Nairobi to the USA",
+      answer: "✈️ NAIROBI ↔ USA\n\nIllustrative economy return-trip budget: USD $700–$1,500 per person.\n\nThe USA is a large destination, so fares depend on the arrival city, travel season, airline, connections, and baggage. This is not a live fare."
+    },
+
+    "flight-india": {
+      question: "Nairobi to India",
+      answer: "✈️ NAIROBI ↔ INDIA\n\nIllustrative economy return-trip budget: USD $350–$850 per person for selected routes.\n\nDelhi, Mumbai, and other cities can have different fares. Actual prices depend on dates, airline, baggage, and availability."
+    },
+
+    "flight-africa": {
+      question: "Flights within Africa",
+      answer: "✈️ SELECTED AFRICAN INTERNATIONAL ROUTES\n\nIllustrative economy return-trip budget: USD $250–$800 per person.\n\nPrices vary considerably between destinations, airlines, and travel dates. Treat this as an initial budget, not a guaranteed fare."
+    },
+
+    "flight-australia": {
+      question: "Flights to Australia",
+      answer: "✈️ NAIROBI ↔ AUSTRALIA\n\nIllustrative economy return-trip budget: USD $900–$1,800 per person.\n\nThe actual fare depends on the Australian city, travel dates, airline, connections, and baggage. Check a booking provider for a live price."
+    },
+
+    hotels: {
+      question: "Find hotels",
+      answer: "🏨 EXPLORE HOTELS\n\nTo explore accommodation options, please visit the AvyGo Hotels page.\n\nSelect the button below to open hotels and continue your search.",
+      link: { label: "Open Hotels Page", url: "./hotels.html" }
+    },
+
+    "hotel-prices": {
+      question: "Where can I check hotel prices?",
+      answer: "🏨 Hotel rates depend on the destination, dates, room type, and number of guests. Visit the AvyGo Hotels page to continue your accommodation search. Confirm the final room price and availability with the provider.",
+      link: { label: "Check Hotels", url: "./hotels.html" }
+    },
+
+    transfers: {
+      question: "I need an airport transfer",
+      answer: "🚘 EXPLORE AIRPORT TRANSFERS\n\nFor airport pickups and ground transport, please visit the AvyGo Transfers page.\n\nHave your pickup location, destination, travel date, arrival time, passenger count, and luggage details ready.",
+      link: { label: "Open Transfers Page", url: "./transfers.html" }
+    },
+
+    "transfer-prices": {
+      question: "Where can I check transfer options?",
+      answer: "🚘 Transfer prices depend on the route, vehicle, date, waiting time, and number of passengers. Visit the AvyGo Transfers page to explore your options. Confirm the final price with the provider.",
+      link: { label: "Check Transfers", url: "./transfers.html" }
+    },
+
+    private: {
+      question: "Private flights and charter",
+      answer: "🛩️ PRIVATE AVIATION\n\nExplore private flight and charter information on AvyGo's Private page. For an accurate quotation, operators need your route, date, passenger count, and aircraft requirements. Availability and prices must be confirmed by an authorized operator.",
+      link: { label: "Explore Private Aviation", url: "./private.html" }
+    },
+
+    cargo: {
+      question: "Cargo services",
+      answer: "📦 CARGO SERVICES\n\nVisit the Cargo page to explore AvyGo's cargo information. Have the shipment origin, destination, contents, dimensions, weight, and preferred shipping date ready.",
+      link: { label: "Explore Cargo", url: "./cargo.html" }
+    },
+
+    lounge: {
+      question: "Airport lounges",
+      answer: "🛋️ AIRPORT LOUNGES\n\nVisit the Lounge page for information about airport lounge options. Access and prices depend on the airport, lounge provider, travel date, and eligibility requirements.",
+      link: { label: "Explore Lounges", url: "./lounge.html" }
+    },
+
+    insurance: {
+      question: "Travel insurance",
+      answer: "🧳 TRAVEL INSURANCE\n\nVisit the Insurance page to explore travel insurance information. Review medical coverage, cancellation terms, baggage protection, exclusions, and destination requirements before buying a policy.",
+      link: { label: "Explore Insurance", url: "./insurance.html" }
+    },
+
+    trip: {
+      question: "Help me plan a trip",
+      answer: "🌍 LET'S PLAN YOUR JOURNEY\n\nStart by choosing your destination and travel dates. Use the AvyGo Flights page to explore flight planning, the Hotels page for accommodation, and the Transfers page for ground transport.\n\nRemember that displayed estimates are not confirmed bookings or live availability.",
+      link: { label: "Start Planning", url: "./flights.html" }
+    }
+  };
+
+  function addMessage(sender, text, link) {
+    const row = document.createElement("div");
+    row.className = sender === "user" ? "message user" : "message bot";
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = sender === "user" ? "Y" : "A";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+
+    row.appendChild(avatar);
+    row.appendChild(bubble);
+    messages.appendChild(row);
+
+    if (link) {
+      const linkRow = document.createElement("div");
+      linkRow.className = "message bot";
+
+      const spacer = document.createElement("div");
+      spacer.className = "avatar";
+      spacer.textContent = "↗";
+
+      const linkBubble = document.createElement("div");
+      linkBubble.className = "bubble";
+
+      const anchor = document.createElement("a");
+      anchor.href = link.url;
+      anchor.textContent = link.label;
+
+      linkBubble.appendChild(anchor);
+      linkRow.appendChild(spacer);
+      linkRow.appendChild(linkBubble);
+      messages.appendChild(linkRow);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function chooseQuestion(key) {
+    const item = answers[key];
+    if (!item) return;
+
+    addMessage("user", item.question);
+    addMessage("assistant", item.answer, item.link);
+
+    status.textContent = "Answered instantly using AvyGo's built-in guide.";
+
+    // Scroll to the most recent response.
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  questionButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      chooseQuestion(button.dataset.question);
+    });
+  });
+
+  resetButton.addEventListener("click", () => {
+    messages.replaceChildren();
+
+    const row = document.createElement("div");
+    row.className = "message bot";
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = "A";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = welcomeMessage;
+
+    row.appendChild(avatar);
+    row.appendChild(bubble);
+    messages.appendChild(row);
+
+    status.textContent = "Select a question to begin.";
+  });
+
+  document.querySelectorAll("[data-year]").forEach((element) => {
+    element.textContent = new Date().getFullYear();
+  });
+})();
+</script>
+</body>
 </html>
